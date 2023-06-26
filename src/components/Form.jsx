@@ -5,21 +5,22 @@ import Button from "./button";
 export default function Form({ setCur }) {
     const [payload, setValue] = useState({})
     const loginHandler = (e) => {
-        const { mail, value } = e.target
+        const {name, value } = e.target
         const newpayload = {
             ...payload,
-            [mail]: value,
+            [name]: value,
         }
         setValue(newpayload)
         console.log(payload)
     }
 
         const onSubmit = () => {
-            setCur('event')
+            
             if (Object.keys(payload).length > 0) {
                 const data = JSON.parse(localStorage.getItem("user")) || []
                 const newpayload = [...data, payload]
                 localStorage.setItem("user", JSON.stringify(newpayload))
+                setCur('event')
                 setValue({})
             }
             else{
